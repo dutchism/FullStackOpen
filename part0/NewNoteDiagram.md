@@ -11,6 +11,12 @@ sequenceDiagram
     activate server
     server-->>browser: HTTP status code 302
     deactivate server
+    Note right of browser: The server responds with a Redirect, asking the browser to do a new HTTP GET request to /notes.
+    
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML document
+    deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
@@ -22,7 +28,7 @@ sequenceDiagram
     server-->>browser: the JavaScript file
     deactivate server
 
-    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+    Note right of browser: The browser starts executing the JavaScript code using AJAX to fetch the JSON data from the server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
